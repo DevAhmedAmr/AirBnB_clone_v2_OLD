@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #script to install and configue nginx
+hostname=$(hostname)
 sudo apt update -y
 sudo apt-get -y install nginx
 sudo ufw app list
