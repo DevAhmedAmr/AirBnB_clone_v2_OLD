@@ -47,7 +47,6 @@ printf %s "server {
         index index.html;
 
         error_page 404 /custom_404.html;
-        
 
         add_header X-Served-By $hostname;
 
