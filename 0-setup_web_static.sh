@@ -15,7 +15,7 @@ sudo printf %s "<html>
 <head>
 </head>
 <body> Hello,this is a test page </body>
-</html>" >/data/web_static/releases/test/index.html
+</html>" | sudo tee /data/web_static/releases/test/index.html
 
 if [ -L "/data/web_static/current" ] && [ -e "/data/web_static/current" ]; then
 	rm -r "/data/web_static/current"
