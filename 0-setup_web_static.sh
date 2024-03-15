@@ -10,7 +10,7 @@ sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
 if [ -L "/data/web_static/current" ] && [ -e "/data/web_static/current" ]; then
-    rm -r "/data/web_static/current"
+    sudo rm -r "/data/web_static/current"
 fi
 
 sudo ln -s /data/web_static/releases/test/ /data/web_static/current
