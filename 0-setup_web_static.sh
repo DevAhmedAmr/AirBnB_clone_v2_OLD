@@ -9,9 +9,6 @@ sudo ufw allow 'Nginx HTTP'
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
-echo "Hello World!" >/var/www/html/index.html
-echo "Ceci n'est pas une page" >/usr/share/nginx/html/custom_404.html
-
 if [ -L "/data/web_static/current" ] && [ -e "/data/web_static/current" ]; then
     rm -r "/data/web_static/current"
 fi
