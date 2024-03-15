@@ -9,14 +9,14 @@ sudo ufw allow 'Nginx HTTP'
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
-echo "Hello World!" | sudo tee /var/www/html/index.html
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+echo "Hello World!" >/var/www/html/index.html
+echo "Ceci n'est pas une page" >/usr/share/nginx/html/custom_404.html
 
 sudo printf %s "<html>
 <head>
 </head>
 <body> Hello,this is a test page </body>
-</html>" | sudo tee /data/web_static/releases/test/index.html
+</html>" >/data/web_static/releases/test/index.html
 
 if [ -L "/data/web_static/current" ] && [ -e "/data/web_static/current" ]; then
 	rm -r "/data/web_static/current"
