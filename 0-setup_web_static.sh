@@ -24,6 +24,4 @@ else
     echo "User $username created."
 fi
 
-sudo chown -R ubuntu:ubuntu /data/
-
 sudo systemctl restart nginx
