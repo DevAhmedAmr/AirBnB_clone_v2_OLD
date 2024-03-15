@@ -3,8 +3,6 @@
 hostname=$(hostname)
 sudo apt update -y
 sudo apt-get -y install nginx
-sudo ufw app list
-sudo ufw allow 'Nginx HTTP'
 
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
