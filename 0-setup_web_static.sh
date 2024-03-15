@@ -8,20 +8,20 @@ sudo apt-get -y install nginx
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
-echo "Hello World!" >/var/www/html/index.html
-echo "Ceci n'est pas une page" >/usr/share/nginx/html/custom_404.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
 
 sudo printf %s "<html>
 <head>
 </head>
 <body> Hello,this is a test page </body>
-</html>" >/data/web_static/releases/test/index.html
+</html>" | sudo tee /data/web_static/releases/test/index.html
 
 if [ -L "/data/web_static/current" ] && [ -e "/data/web_static/current" ]; then
     rm -r "/data/web_static/current"
 fi
 
-sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 # Check if the user exists
 username="ubuntu"
@@ -34,7 +34,7 @@ else
     echo "User $username created."
 fi
 
-sudo chown -R ubuntu:ubuntu /data/
+sudo chown -hR ubuntu:ubuntu /data/
 
 printf %s "server {
         listen 80;
@@ -64,6 +64,7 @@ printf %s "server {
         location / {
             try_files \$uri \$uri/ =404;
             }
-        }" >/etc/nginx/sites-available/default
+        }" | sudo tee /etc/nginx/sites-available/default
 
+sudo service nginx start
 sudo systemctl restart nginx
