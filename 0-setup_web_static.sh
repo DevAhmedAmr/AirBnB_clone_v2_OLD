@@ -24,6 +24,17 @@ fi
 
 sudo ln -s /data/web_static/releases/test/ /data/web_static/current
 
+# Check if the user exists
+username="ubuntu"
+
+if id "$username" &>/dev/null; then
+	echo "User $username already exists."
+else
+	# Create the user
+	sudo useradd -m "$username"
+	echo "User $username created."
+fi
+
 sudo chown -R ubuntu:ubuntu /data/
 
 printf %s "server {
