@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #script to install and configue nginx
-sudo apt update
+sudo apt update -y
 sudo apt-get -y install nginx
 sudo ufw app list
 sudo ufw allow 'Nginx HTTP'
