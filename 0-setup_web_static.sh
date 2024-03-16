@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 #script to install and configue nginx
+#hostname=$(hostname)
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install nginx
 
-sudo mkdir -p /data/web_static/releases/test/
-sudo mkdir -p /data/web_static/shared/
+# sudo mkdir -p /data/web_static/releases/test/
+# sudo mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test /data/web_static/shared
 
 #echo "Hello World!" | sudo tee /var/www/html/index.html
 echo "This is a test" | sudo tee /data/web_static/releases/test/index.html
