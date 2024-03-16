@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #script to install and configue nginx
-#hostname=$(hostname)
+hostname=$(hostname)
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install nginx
