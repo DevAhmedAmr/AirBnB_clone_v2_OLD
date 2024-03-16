@@ -8,31 +8,33 @@ sudo apt-get -y install nginx
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
-echo "Hello World!" | sudo tee /var/www/html/index.html
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
+#echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "This is a test" | sudo tee /data/web_static/releases/test/index.html
 
-sudo printf %s "<html>
-<head>
-</head>
-<body> Hello,this is a test page </body>
-</html>" | sudo tee /data/web_static/releases/test/index.html
+#echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
 
-if [ -L "/data/web_static/current" ] && [ -e "/data/web_static/current" ]; then
-    rm -r "/data/web_static/current"
-fi
+# sudo printf %s "<html>
+# <head>
+# </head>
+# <body> Hello,this is a test page </body>
+# </html>" | sudo tee /data/web_static/releases/test/index.html
+
+# if [ -L "/data/web_static/current" ] && [ -e "/data/web_static/current" ]; then
+#     rm -r "/data/web_static/current"
+# fi
 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 # Check if the user exists
-username="ubuntu"
+# username="ubuntu"
 
-if id "$username" &>/dev/null; then
-    echo "User $username already exists."
-else
-    # Create the user
-    sudo useradd -m "$username"
-    echo "User $username created."
-fi
+# if id "$username" &>/dev/null; then
+#     echo "User $username already exists."
+# else
+#     # Create the user
+#     sudo useradd -m "$username"
+#     echo "User $username created."
+# fi
 
 sudo chown -hR ubuntu:ubuntu /data/
 
@@ -65,4 +67,4 @@ printf %s "server {
             }
         }" | sudo tee /etc/nginx/sites-available/default
 
-sudo systemctl restart nginx
+sudo service nginx start
