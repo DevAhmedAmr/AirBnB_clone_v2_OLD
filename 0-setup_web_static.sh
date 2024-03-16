@@ -12,8 +12,9 @@ sudo apt-get -y upgrade
 sudo apt-get -y install nginx
 
 # Create necessary directories for web server
-sudo mkdir -p /data/web_static/releases/test
-sudo mkdir -p /data/web_static/shared
+# sudo mkdir -p /data/web_static/releases/test
+# sudo mkdir -p /data/web_static/shared
+sudo mkdir -p /data/web_static/releases/test /data/web_static/shared
 
 # Create a simple Hello World index page
 echo "Hello World!" | sudo tee /var/www/html/index.html
