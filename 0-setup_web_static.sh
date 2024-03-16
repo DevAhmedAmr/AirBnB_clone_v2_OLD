@@ -65,5 +65,4 @@ printf %s "server {
             }
         }" | sudo tee /etc/nginx/sites-available/default
 
-sudo service nginx start
 sudo systemctl restart nginx
