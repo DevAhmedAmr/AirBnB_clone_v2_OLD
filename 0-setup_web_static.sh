@@ -37,34 +37,35 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 # fi
 
 sudo chown -hR ubuntu:ubuntu /data/
+sudo sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
 
-printf %s "server {
-        listen 80;
-        listen [::]:80;
+# printf %s "server {
+#         listen 80;
+#         listen [::]:80;
 
-        server_name $hostname;
+#         server_name $hostname;
 
-        root /var/www/html;
+#         root /var/www/html;
 
-        index index.html;
+#         index index.html;
 
-        error_page 404 /custom_404.html;
+#         error_page 404 /custom_404.html;
 
-        add_header X-Served-By $hostname;
+#         add_header X-Served-By $hostname;
 
-        location = /custom_404.html {
-        root /usr/share/nginx/html;
-        internal;}
+#         location = /custom_404.html {
+#         root /usr/share/nginx/html;
+#         internal;}
 
-        location /redirect_me {
-            return 301 http://google.com/;
-                                            }
-        location /hbnb_static{
-            alias /data/web_static/current/;}
+#         location /redirect_me {
+#             return 301 http://google.com/;
+#                                             }
+#         location /hbnb_static{
+#             alias /data/web_static/current/;}
 
-        location / {
-            try_files \$uri \$uri/ =404;
-            }
-        }" | sudo tee /etc/nginx/sites-available/default
+#         location / {
+#             try_files \$uri \$uri/ =404;
+#             }
+#         }" | sudo tee /etc/nginx/sites-available/default
 
 sudo service nginx start
