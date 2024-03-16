@@ -22,5 +22,8 @@ def create_tgz_name():
 def do_pack():
     create_folder("versions")
     tgz_fileName = create_tgz_name()
-    output = local(f"tar -czvf {tgz_fileName}.tar.gz ./web_static", capture=True)
-    return f"./{tgz_fileName}.tar.gz"
+    try:
+        output = local(f"tar -czvf {tgz_fileName}.tar.gz ./web_static", capture=True)
+        return f"./{tgz_fileName}.tar.gz"
+    except:
+        return None
