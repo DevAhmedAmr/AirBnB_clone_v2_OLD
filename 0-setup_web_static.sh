@@ -54,7 +54,7 @@ printf %s "server {
 
         root /var/www/html;
 
-        index index.html;
+        index index.html 0-index.html 1-index.html 2-index.html 4-index.html 5-index.html 6-index.html 7-index.html 8-index.html;
 
         error_page 404 /custom_404.html;
 

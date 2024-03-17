@@ -52,25 +52,19 @@ def do_deploy(archive_path):
         filename, extension = os.path.splitext(filename)
         print(f"filename= {filename}")
         with cd("/tmp/"):
-            sudo(f"mkdir /data/web_static/releases/{filename}")
+            run(f"mkdir /data/web_static/releases/{filename}")
 
-            sudo(
-                f"tar -xzf /tmp/{archive_name} -C /data/web_static/releases/{filename}"
-            )
+            run(f"tar -xzf /tmp/{archive_name} -C /data/web_static/releases/{filename}")
             run("pwd")
-            sudo(f"rm ./{archive_name}")
-            sudo("rm -r /data/web_static/current")
-            sudo(
-                f"ln -sf /data/web_static/releases/{filename} /data/web_static/current"
-            )
-            sudo(
+            run(f"rm ./{archive_name}")
+            run("rm -r /data/web_static/current")
+            run(f"ln -sf /data/web_static/releases/{filename} /data/web_static/current")
+            run(
                 f"mv /data/web_static/releases/{filename}/web_static/* /data/web_static/releases/{filename}"
             )
-            sudo(f"rm -rf /data/web_static/releases/{filename}/web_static")
-            sudo(f"rm -rf /data/web_static/current")
-            sudo(
-                f"ln -s /data/web_static/releases/{filename}/ /data/web_static/current"
-            )
+            run(f"rm -rf /data/web_static/releases/{filename}/web_static")
+            run(f"rm -rf /data/web_static/current")
+            run(f"ln -s /data/web_static/releases/{filename}/ /data/web_static/current")
             return True
 
     return False
@@ -81,3 +75,7 @@ def deploy():
     if archive_path is None:
         return False
     return do_deploy(archive_path)
+
+
+if __name__ == "__main__":
+    deploy()
