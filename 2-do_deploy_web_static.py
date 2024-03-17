@@ -7,7 +7,7 @@ from os.path import exists
 from datetime import datetime
 import os
 
-env.hosts = ["34.227.93.198"]
+env.hosts = ["34.227.93.198", "54.166.169.232"]
 env.user = "ubuntu"
 env.key_filename = r"C:\Users\ahmed\.ssh\pk3.pem"
 
@@ -47,16 +47,21 @@ def do_deploy(archive_path):
     if archive_path is not None and exists(archive_path):
         archive_name = extract_filename_from_path(archive_path)
         c = put(archive_path, remote_path="/tmp/")
-        with cd("/data/web_static/releases/"):
-            sudo(f"mkdir data/web_static/releases/{archive_name}")
+        filename, extension = os.path.splitext(archive_name)
+        filename, extension = os.path.splitext(filename)
+        filename, extension = os.path.splitext(filename)
+        print(f"filename= {filename}")
+        with cd("/tmp/"):
+            sudo(f"mkdir /data/web_static/releases/{filename}")
 
             sudo(
-                f"tar -xzf /tmp/{archive_name} -C /data/web_static/releases/{archive_name}"
+                f"tar -xzf /tmp/{archive_name} -C /data/web_static/releases/{filename}"
             )
-            run(f"rm {archive_path}")
+            run("pwd")
+            sudo(f"rm ./{archive_name}")
             sudo("rm -r /data/web_static/current")
             sudo(
-                " ln -sf /data/web_static/releases/{archive_name} /data/web_static/current"
+                f"ln -sf /data/web_static/releases/{filename} /data/web_static/current"
             )
             return True
 
@@ -64,4 +69,6 @@ def do_deploy(archive_path):
 
 
 if __name__ == "__main__":
-    do_deploy(do_pack())
+    namee = do_pack()
+    print(f"name = {namee}")
+    do_deploy(namee)
