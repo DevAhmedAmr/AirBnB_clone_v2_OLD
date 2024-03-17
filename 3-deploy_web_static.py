@@ -66,7 +66,7 @@ def do_deploy(archive_path):
             sudo(
                 f"mv /data/web_static/releases/{filename}/web_static/* /data/web_static/releases/{filename}"
             )
-            sudo(f"rm -rf /data/web_static/releases/{filename}/web_static", password)
+            sudo(f"rm -rf /data/web_static/releases/{filename}/web_static")
             sudo(f"rm -rf /data/web_static/current")
             sudo(
                 f"ln -s /data/web_static/releases/{filename}/ /data/web_static/current"
@@ -81,7 +81,3 @@ def deploy():
     if archive_path is None:
         return False
     return do_deploy(archive_path)
-
-
-if __name__ == "__main__":
-    pass
