@@ -63,6 +63,14 @@ def do_deploy(archive_path):
             sudo(
                 f"ln -sf /data/web_static/releases/{filename} /data/web_static/current"
             )
+            sudo(
+                f"mv /data/web_static/releases/{filename}/web_static/* /data/web_static/releases/{filename}"
+            )
+            sudo(f"rm -rf /data/web_static/releases/{filename}/web_static")
+            sudo(f"rm -rf /data/web_static/current")
+            sudo(
+                f"ln -s /data/web_static/releases/{filename}/ /data/web_static/current"
+            )
             return True
 
     return False
